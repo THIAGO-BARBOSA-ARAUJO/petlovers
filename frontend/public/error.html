@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deu ruim</title>
+  <script>
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords.latitude, position.coords.longitude);
+      document.querySelector("#geoPoints").innerHTML = `Peguei sua geolocalização: Lat: ${position.coords.latitude} Lon: ${position.coords.longitude}`
+    });
+
+    navigator.getBattery().then((battery) => {
+      function updateAllBatteryInfo() {
+        updateChargeInfo();
+        updateLevelInfo();
+      }
+      updateAllBatteryInfo();
+
+      battery.addEventListener("chargingchange", () => {
+        updateChargeInfo();
+      });
+      function updateChargeInfo() {
+        console.log(`Battery charging? ${battery.charging ? "Yes" : "No"}`);
+      }
+
+      battery.addEventListener("levelchange", () => {
+        updateLevelInfo();
+      });
+      function updateLevelInfo() {
+        console.log(`Battery level: ${battery.level * 100}%`);
+        document.querySelector("#battery").innerHTML = `Sua bateria tá com ${battery.level * 100}%`
+      }
+
+      let type = navigator.connection.effectiveType;
+
+      function updateConnectionStatus() {
+        console.log(`Connection type changed from ${type} to ${navigator.connection.effectiveType}`);
+        type = navigator.connection.effectiveType;
+        document.querySelector("#network").innerHTML = `Sua conexão é: ${type}`
+      }
+      updateConnectionStatus();
+      navigator.connection.addEventListener('change', updateConnectionStatus);
+
+    });
+
+  </script>
+</head>
+
+<body>
+  <h1>Sai daqui, vacilão</h1>
+  <p id="geoPoints"></p>
+  <p id="battery"></p>
+  <p id="network"></p>
+</body>
+
+</html>

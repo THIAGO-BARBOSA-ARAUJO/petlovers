@@ -1,0 +1,49 @@
+{
+  "name": "petlovers-back",
+  "version": "1.0.0",
+  "description": "Uma loja feita para quem ama seus Pets",
+  "main": "dist/index.js",
+  "prisma": {
+    "seed": "ts-node-dev prisma/seed.ts"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run migration:run && npx prisma generate && npm run seed && npm run dev:run",
+    "dev:run": "ts-node-dev -r tsconfig-paths/register --exit-child --respawn --ignore-watch node_modules --no-notify ./src/server.ts",
+    "migration:run": "prisma migrate deploy",
+    "migration:generate": "npm run prisma migrate dev",
+    "build": "tsc",
+    "seed": "npx prisma db seed"
+  },
+  "keywords": [],
+  "author": "Thiago Araujo",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^4.7.1",
+    "axios": "^1.2.2",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.7",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "http-status": "^1.5.3",
+    "joi": "^17.6.2",
+    "jsonwebtoken": "^8.5.1",
+    "prisma": "^4.7.1",
+    "qrcode": "^1.5.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/node": "^18.11.13",
+    "@types/uuid": "^9.0.0",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.1.1",
+    "typescript": "^4.9.4"
+  }
+}

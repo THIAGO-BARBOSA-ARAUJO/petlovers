@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model address {
+  id         Int     @id(map: "address_pk") @default(autoincrement())
+  userId     Int
+  street     String
+  number     Int
+  district   String
+  complement String?
+  city       String
+  state      String
+  users      users   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "address_fk0")
+}
+
+model bestsellers {
+  id   Int    @id(map: "bestsellers_pk") @default(autoincrement())
+  name String
+  img  String
+}
+
+model cart {
+  id       Int    @id(map: "cart_pk") @default(autoincrement())
+  userId   Int
+  name     String
+  img_url  String
+  price    Int
+  quantity Int
+  stock    Int
+  users    users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cart_fk0")
+}
+
+model orders {
+  id        Int    @id(map: "orders_pk") @default(autoincrement())
+  userId    Int
+  num_order Int    @default(autoincrement())
+  date      String
+  method    String
+  total     Int
+  status    String
+  users     users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_fk0")
+}
+
+model products {
+  id          Int     @id(map: "products_pk") @default(autoincrement())
+  name        String
+  price       Int
+  animal      String  @db.VarChar(100)
+  category    String  @db.VarChar(100)
+  img_url     String
+  stock       Int
+  description String?
+}
+
+model sessions {
+  id     Int    @id(map: "sessions_pk") @default(autoincrement())
+  token  String
+  userId Int
+  users  users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "sessions_fk0")
+}
+
+model users {
+  id       Int        @id(map: "users_pk") @default(autoincrement())
+  name     String
+  username String
+  email    String     @unique
+  password String
+  address  address[]
+  cart     cart[]
+  orders   orders[]
+  sessions sessions[]
+}

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": { "@/*": ["src/*"] },
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  },
+
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true
+  },
+  "include": ["module.d.ts", "src"],
+  "files": ["custom.request.d.ts"]
+}
