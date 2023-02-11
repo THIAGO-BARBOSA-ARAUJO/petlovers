@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import api from "../../services/api"
 import iconvisionopen from "../../img/icons/eye.png"
 import iconvisionclosed from "../../img/icons/hidden.png"
 import React from "react";
@@ -27,7 +27,7 @@ export default function Register() {
         if(senha === confirmaSenha) {
   
             try{
-                await axios.post("http://localhost/api/register", {
+                await api.post("/register", {
                     email: email,
                     name: nome,
                     password: senha,

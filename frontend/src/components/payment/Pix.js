@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import styled from "styled-components";
 import UserContext from "../context/UserContext";
-import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import Header from "../home/Header";
-import axios from "axios";
+import api from "../../services/api";
 
 function QrCode() {
   return (
@@ -38,8 +37,8 @@ export default function Pix() {
 
   async function CreateOrder() {
     try {
-      const order = await axios.post(
-        "http://localhost/api/orders",
+      const order = await api.post(
+        "/orders",
         {
           method: "PIX",
           total: context.totalProducts * 100,

@@ -3,7 +3,7 @@ import BoxInfoAccount from "./BoxInfoAccount";
 import imgpointer from "../../img/icons/pointer.png";
 import styled from "styled-components";
 import Header from "../home/Header";
-import axios from "axios";
+import api from "../../services/api";
 
 function BoxAddress({ address }) {
   const name = localStorage.getItem("nameuser");
@@ -26,7 +26,7 @@ export default function Address() {
 
   async function getAddress() {
     try {
-      const resp = await axios.get("http://localhost/api/address", {
+      const resp = await api.get("/address", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

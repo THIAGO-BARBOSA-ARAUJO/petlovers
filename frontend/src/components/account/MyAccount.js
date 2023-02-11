@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../home/Header";
 import BoxInfoAccount from "./BoxInfoAccount";
-import axios from "axios";
+import api from "../../services/api";
 import imguser from "../../img/icons/user.png";
 import imgpointer from "../../img/icons/pointer.png";
 import imghome from "../../img/icons/home.png";
@@ -13,7 +13,6 @@ export default function Account() {
   const [users, setUser] = useState([]);
   const [address, setAddress] = useState([]);
   const [editAddress, setEditAddress] = useState(false);
-  const [cep, setCep] = useState();
   const [logradouro, setLogradouro] = useState();
   const [number, setNumber] = useState();
   const [complement, setComplement] = useState();
@@ -24,7 +23,7 @@ export default function Account() {
 
   async function getUser() {
     try {
-      const resp = await axios.get("http://localhost/api/user", {
+      const resp = await api.get("/user", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -36,7 +35,7 @@ export default function Account() {
 
   async function getAddress() {
     try {
-      const resp = await axios.get("http://localhost/api/address", {
+      const resp = await api.get("/address", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -51,8 +50,7 @@ export default function Account() {
   async function CreateAddress(event) {
     event.preventDefault();
     try {
-      await axios.post(
-        "http://localhost/api/address",
+      await api.post("/address",
         {
           street: logradouro,
           num: number,
@@ -76,7 +74,7 @@ export default function Account() {
 
   async function DeletedAddress(id) {
     try {
-      await axios.delete(`http://localhost/api/address?id=${id}`, {
+      await api.delete(`/address?id=${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -92,7 +90,7 @@ export default function Account() {
     const cep = e.target.value.replace(/\D/g, '')
 
     try {
-      const cepp = await axios.get(`http://localhost/api/address/getcep?cep=${cep}`, {
+      const cepp = await api.get(`/address/getcep?cep=${cep}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

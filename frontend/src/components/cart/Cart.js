@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../context/UserContext";
-import axios from "axios";
+import api from "../../services/api";
 import Header from "../home/Header";
 import { ToastContainer } from "react-toastify";
 import InfoProducts from "./BoxInfoProducts";
@@ -21,7 +21,7 @@ export default function Cart() {
 
   async function getCart() {
     try {
-      const resp = await axios.get("http://localhost/api/cart", {
+      const resp = await api.get("/cart", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -35,7 +35,7 @@ export default function Cart() {
 
   async function deleteAllCart() {
     try {
-      const resp = await axios.delete("http://localhost/api/cart/deletecart", {
+      const resp = await api.delete("/cart/deletecart", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

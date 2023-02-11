@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import axios from "axios"
+import api from "../../services/api";
 import { useEffect, useState } from "react";
 import React from "react";
 
@@ -10,7 +10,7 @@ export default function BestSellers(){
 
      async function rendersMoreBuyers(){
          try {
-             const request = await axios.get("http://localhost/api/bestsellers")
+             const request = await api.get("/bestsellers")
              setBestSellers(request.data)
          } catch (error) {
              console.log(error)

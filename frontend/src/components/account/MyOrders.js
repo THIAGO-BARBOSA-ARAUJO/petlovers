@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../services/api";
 import styled from "styled-components";
 import Header from "../home/Header";
 import BoxInfoAccount from "./BoxInfoAccount";
@@ -9,7 +9,7 @@ export default function MyOrders() {
 
   async function getOrders(e) {
     try {
-      const oders = await axios.get(`http://localhost/api/orders`, {
+      const oders = await api.get(`/orders`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

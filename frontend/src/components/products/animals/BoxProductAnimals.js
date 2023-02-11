@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import axios from "axios";
+import api from "../../../services/api";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import UserContext from "../../context/UserContext";
@@ -10,8 +10,8 @@ export default function BoxProduct(params) {
 
   async function addToCart(img_url, name, price, quantity, stock) {
     try {
-      await axios.post(
-        "http://localhost/api/cart",
+      await api.post(
+        "/cart",
         {
           img_url,
           name,

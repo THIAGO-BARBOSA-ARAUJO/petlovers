@@ -5,7 +5,7 @@ import imglogin from "../../img/user-login.png";
 import imgpass from "../../img/pass-login.png";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import axios from "axios";
+import api from "../../services/api";
 import loading from "../../img/loading.gif";
 import ButtonGitHub from "./ButtonLoginGitHub";
 
@@ -21,7 +21,7 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const resposta = await axios.post("http://localhost/api/login", {
+      const resposta = await api.post("/login", {
         email: email,
         password: senha,
       });
@@ -52,8 +52,8 @@ export default function Login() {
       setLoader(true);
       if (code) {
         try {
-          const response = await axios.post(
-            "http://localhost/api/logingithub",
+          const response = await api.post(
+            "/logingithub",
             { code }
           );
           console.log(response.data)

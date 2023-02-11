@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import trash from "../../img/icons/trash.png";
-import axios from "axios";
+import api from "../../services/api";
 import { toast } from "react-toastify";
 import { useContext, useEffect } from "react";
 import UserContext from "../context/UserContext";
@@ -11,7 +11,7 @@ export default function InfoProducts(props) {
 
   async function removeToCart(id) {
     try {
-      await axios.delete(`http://localhost/api/cart?id=${id}`, {
+      await api.delete(`/cart?id=${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -34,8 +34,8 @@ export default function InfoProducts(props) {
 
   async function updateQuantityCart(id, method) {
     try {
-      await axios.patch(
-        `http://localhost/api/cart?id=${id}`,
+      await api.patch(
+        `/cart?id=${id}`,
         {
           method,
         },

@@ -76,7 +76,6 @@ const StyledAnimal = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
   h1 {
     padding-top: 30px;
     font-size: 30px;

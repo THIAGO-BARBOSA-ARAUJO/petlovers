@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import UserContext from "../../context/UserContext";
 import styled from "styled-components";
-import axios from "axios";
+import api from "../../../services/api";
 import { useEffect } from "react";
 import Header from "../../home/Header";
 import Footer from "../../home/Footer";
@@ -17,8 +17,8 @@ export default function ProductsAnimals() {
 
   async function renderProducsDogs() {
     try {
-      const resp = await axios.get(
-        `http://localhost/api/products/${context.productsAnimals}`
+      const resp = await api.get(
+        `/products/${context.productsAnimals}`
       );
       setProducts(resp.data);
       console.log(resp.data);

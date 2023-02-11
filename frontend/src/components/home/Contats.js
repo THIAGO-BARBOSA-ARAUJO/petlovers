@@ -84,7 +84,7 @@ const ContactsStyled = styled.div`
     width: 100%;
     max-width: 500px;
     margin-right: 50px;
-    background-color: #fff;
+    background-color: #ffffff;
 
     h1 {
         text-align: center;

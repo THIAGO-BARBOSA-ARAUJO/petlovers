@@ -39,11 +39,11 @@ model cart {
 model orders {
   id        Int    @id(map: "orders_pk") @default(autoincrement())
   userId    Int
-  num_order Int    @default(autoincrement())
   date      String
   method    String
   total     Int
   status    String
+  num_order Int    @default(autoincrement())
   users     users  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_fk0")
 }
 

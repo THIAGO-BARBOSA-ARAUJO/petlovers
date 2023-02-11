@@ -17,6 +17,6 @@
     "esm": true,
     "transpileOnly": true
   },
-  "include": ["module.d.ts", "src"],
+  "include": ["module.d.ts", "src", "prisma/seed.ts"],
   "files": ["custom.request.d.ts"]
 }

@@ -6,7 +6,7 @@ import carr from "../../img/icons/carrinho2.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import UserContext from "../context/UserContext";
-import axios from "axios";
+import api from "../../services/api";
 import React from "react";
 
 export default function Header() {
@@ -20,7 +20,7 @@ export default function Header() {
 
   async function getCart() {
     try {
-      const resp = await axios.get("http://localhost/api/cart", {
+      const resp = await api.get("/cart", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -39,7 +39,7 @@ export default function Header() {
     const resp = prompt("Gostaria mesmo de deslogar ?");
     if (resp === "Sim" || resp === "sim") {
       try {
-        await axios.delete("http://localhost/api/logout", {
+        await api.delete("/logout", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

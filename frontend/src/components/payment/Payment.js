@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Header from "../home/Header";
-import axios from "axios";
+import api from "../../services/api";
 
 export default function Payment() {
   const navigate = useNavigate();
 
   async function DellAllCart() {
     try {
-      await axios.delete("http://localhost/api/cart/delallcart", {
+      await api.delete("/cart/delallcart", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
